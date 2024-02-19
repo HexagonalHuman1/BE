@@ -1,12 +1,16 @@
 package com.example.huewith.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.Date;
 
+@Entity
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,11 +18,11 @@ public class Task {
     private Long id;
 
     @Column
-    String todo;
+    private String todo;
 
     @Column
-    Date date;
+    private Date date;
 
     @Column
-    boolean completed;
+    private boolean completed;
 }

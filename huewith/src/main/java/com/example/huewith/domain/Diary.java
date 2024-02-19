@@ -1,12 +1,16 @@
 package com.example.huewith.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.Date;
 
+@Entity
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Diary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,14 +18,14 @@ public class Diary {
     private Long id;
 
     @Column
-    String title;
+    private String title;
 
     @Column
-    Date date;
+    private Date date;
 
     @Column
-    String content;
+    private String content;
 
     @Column
-    String image;
+    private String image;
 }

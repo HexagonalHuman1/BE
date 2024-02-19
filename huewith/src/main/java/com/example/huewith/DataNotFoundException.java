@@ -1,4 +1,4 @@
-package com.likelion.letterBox;
+package com.example.huewith;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

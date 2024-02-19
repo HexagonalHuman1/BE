@@ -1,10 +1,15 @@
 package com.example.huewith.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.example.huewith.dto.MemberJoinDto;
+import jakarta.persistence.*;
+import lombok.*;
 
+@Entity
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,17 +17,23 @@ public class Member {
     private Long id;
 
     @Column
-    String email;
+    private String email;
 
     @Column
-    String password;
+    private String password;
 
     @Column
-    String introduce;
+    private String introduce;
 
     @Column
-    String name;
+    private String name;
 
-    @Column
-    String image;
+    public static Member from(MemberJoinDto userJoinDto) {
+        return Member.builder()
+                .email(userJoinDto.getEmail())
+                .password(userJoinDto.getPassword())
+                .introduce(userJoinDto.getIntroduce())
+                .name(userJoinDto.getName())
+                .build();
+    }
 }

@@ -1,7 +1,5 @@
-package com.likelion.letterBox.configuration;
+package com.example.huewith.configuration;
 
-import io.swagger.v3.oas.models.Components;
-import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
@@ -16,10 +14,10 @@ import java.util.Set;
 public class SwaggerConfig {
     private Info swaggerInfo(){
         return new Info()
-                .title("mindLetter API명세서")
+                .title("huewith API명세서")
                 .version("1.0.0")
-                .description("23년도 여름 멋사 중앙 해커톤 프로젝트\n" +
-                        "ZeroMarket API 명세서입니다.\n");
+                .description(
+                        "Huewith API 명세서입니다.\n");
     }
 
     @Bean
@@ -27,7 +25,7 @@ public class SwaggerConfig {
         String[] paths = {"/api/v1/**"};
 
         return GroupedOpenApi.builder()
-                .group("MINDLETTER API v1")
+                .group("huewith API v1")
                 .pathsToMatch(paths)
                 .build();
     }

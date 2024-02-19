@@ -1,4 +1,4 @@
-package com.likelion.letterBox.configuration;
+package com.example.huewith.configuration;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;

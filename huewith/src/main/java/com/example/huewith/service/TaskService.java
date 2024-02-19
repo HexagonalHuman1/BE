@@ -1,2 +1,4 @@
-package com.example.huewith.service;public class TaskService {
+package com.example.huewith.service;
+
+public class TaskService {
 }

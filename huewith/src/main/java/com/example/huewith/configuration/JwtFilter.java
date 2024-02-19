@@ -1,7 +1,7 @@
-package com.likelion.letterBox.configuration;
+package com.example.huewith.configuration;
 
-import com.likelion.letterBox.service.UserService;
-import com.likelion.letterBox.utils.JwtUtil;
+import com.example.huewith.service.MemberService;
+import com.example.huewith.utils.JwtUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,14 +15,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-
 import java.io.IOException;
 import java.util.List;
 
 @RequiredArgsConstructor
 @Slf4j
 public class JwtFilter extends OncePerRequestFilter {
-    private final UserService userService;
+    private final MemberService memberService;
     private final String secretKey;
 
     @Override  //권한부여ghr
@@ -53,7 +52,7 @@ public class JwtFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
-        String email=JwtUtil.getEmail(token, secretKey);
+        String email= JwtUtil.getEmail(token, secretKey);
         log.info("email: {}", email);
 
         UsernamePasswordAuthenticationToken authenticationToken=

@@ -1,6 +1,6 @@
 package com.example.huewith.configuration;
 
-import com.likelion.letterBox.service.UserService;
+import com.example.huewith.service.MemberService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,14 +17,14 @@ import org.springframework.web.filter.CorsFilter;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    private final UserService userService;
+    private final MemberService memberService;
 
     @Value("${jwt.secret}")
     private String secretKey;  // final 제거
 
     // Lombok의 @RequiredArgsConstructor 대신 명시적 생성자 사용
-    public SecurityConfig(UserService userService) { //애플리케이션이 시작될 때 자동으로 생성되고 적용됨
-        this.userService = userService;
+    public SecurityConfig(MemberService memberService) { //애플리케이션이 시작될 때 자동으로 생성되고 적용됨
+        this.memberService=memberService;
     }
 
     // 생성자 주입 방식을 사용 (Lombok의 @RequiredArgsConstructor 사용 가능)
@@ -37,14 +37,14 @@ public class SecurityConfig {
                 .csrf((csrfConfig)->csrfConfig.disable())
                 // 모든 요청에 대해 접근 허용
                 .authorizeHttpRequests(config->config
-                        .requestMatchers("/api/v1/user/**", "/swagger-ui/**","/webjars/**",
-                        "/v3/api-docs/**","/swagger-resources/**","/api/v1/letter/**",
-                        "/api/v1/postbox/open/**", "/api/v1/postbox/letters/**").permitAll() // 로그인 및 회원가입 경로 허용
+                        .requestMatchers("/swagger-ui/**","/webjars/**",
+                        "/v3/api-docs/**","/swagger-resources/**","/api/v1/member/**"
+                        ).permitAll() // 로그인 및 회원가입 경로 허용
                         .anyRequest().authenticated() // 그 외 모든 요청은 인증 필요
                 );
                 // JWT필터를 통과해야 함
         http.
-                addFilterBefore(new JwtFilter(userService, secretKey), LogoutFilter.class)
+                addFilterBefore(new JwtFilter(memberService, secretKey), LogoutFilter.class)
                 // CORS 설정
                 .addFilter(corsFilter())
                 // 세션 사용 안함 (JWT 사용을 위해)

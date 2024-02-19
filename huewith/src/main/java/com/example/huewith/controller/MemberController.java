@@ -1,6 +1,7 @@
 package com.example.huewith.controller;
 
 import com.example.huewith.dto.MemberJoinDto;
+import com.example.huewith.dto.MemberLoginDto;
 import com.example.huewith.service.MemberService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -31,7 +32,7 @@ public class MemberController {
     @Operation(summary="로그인 api")
     @ApiResponse(responseCode = "200", description = "성공")
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody MemberJoinDto userDto){
+    public ResponseEntity<String> login(@RequestBody MemberLoginDto userDto){
         //토큰만 발급됨(로그인 성공시)
         String email= userDto.getEmail();
         String password=userDto.getPassword();
